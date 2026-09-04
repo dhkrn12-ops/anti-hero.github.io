@@ -9,10 +9,31 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Orbitron:wght@500;600;700;800;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box}
-html,body{margin:0;background:#07090c;color:#edf1f3;font-family:Inter,"Noto Sans KR",sans-serif}
+html,body{
+    margin:0;
+    background:
+        radial-gradient(circle at 15% 20%, #18232b 0, transparent 30%),
+        radial-gradient(circle at 85% 75%, #171c25 0, transparent 28%),
+        radial-gradient(circle at 50% 50%, #0e141a 0, #07090c 70%);
+    background-attachment:fixed;
+    color:#edf1f3;
+    font-family:Inter,"Noto Sans KR",sans-serif;
+}
 button{font:inherit;color:inherit}
 .hidden{display:none!important}
-body:after{content:"";position:fixed;inset:0;pointer-events:none;opacity:.045;background:repeating-linear-gradient(0deg,transparent 0 3px,#fff 4px);z-index:100}
+body:before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:0;
+    opacity:.045;
+    background:
+        linear-gradient(90deg,transparent 49.8%,#b8c7d2 50%,transparent 50.2%),
+        linear-gradient(0deg,transparent 49.8%,#b8c7d2 50%,transparent 50.2%);
+    background-size:160px 160px;
+    mask-image:radial-gradient(circle at center,black,transparent 75%);
+}
 
 .landing{min-height:100vh;display:grid;place-items:center;text-align:center;position:relative;overflow:hidden;background:radial-gradient(circle at center,#252b31 0,#11151a 34%,#07090c 72%)}
 .landing:before,.landing:after{content:"";position:absolute;border:1px solid #fff1;width:42vw;height:42vw;transform:rotate(45deg)}
