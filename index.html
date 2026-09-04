@@ -129,6 +129,73 @@ main{width:min(1180px,92vw);margin:auto}
     .profileLabel{font-size:8px}
     .profileValue{font-size:13px;line-height:1.75}
 }
+    /* ===== BGM CONTROL ===== */
+.bgm-control {
+    position: fixed;
+    top: 24px;
+    right: 24px;
+    z-index: 300;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 10px;
+    background: rgba(10, 14, 18, 0.88);
+    border: 1px solid #56636b;
+    box-shadow: 0 0 18px rgba(120, 180, 220, 0.12);
+    backdrop-filter: blur(8px);
+}
+
+.bgm-control button {
+    width: 34px;
+    height: 30px;
+    border: 1px solid #56636b;
+    background: #141a1f;
+    color: #dce5e9;
+    font-family: inherit;
+    font-size: 12px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.bgm-control button:hover {
+    background: #202a31;
+    border-color: #aebcc4;
+    box-shadow: 0 0 10px rgba(180, 220, 240, 0.2);
+}
+
+.bgm-control input[type="range"] {
+    width: 70px;
+    accent-color: #b9c7ce;
+}
+
+.bgm-status {
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    color: #89969d;
+    white-space: nowrap;
+}
+
+@media (max-width: 700px) {
+    .bgm-control {
+        top: 12px;
+        right: 12px;
+        padding: 6px 7px;
+        gap: 5px;
+    }
+
+    .bgm-control button {
+        width: 30px;
+        height: 28px;
+    }
+
+    .bgm-control input[type="range"] {
+        width: 45px;
+    }
+
+    .bgm-status {
+        display: none;
+    }
+}
 </style>
 </head>
 <body>
@@ -256,6 +323,18 @@ main{width:min(1180px,92vw);margin:auto}
 <div class="modalText" id="mx"></div>
 </div>
 </div>
+    <!-- BGM CONTROL -->
+<div class="bgm-control">
+    <button id="bgmPlay">▶</button>
+    <button id="bgmPause">Ⅱ</button>
+    <button id="bgmStop">■</button>
+    <input id="bgmVolume" type="range" min="0" max="1" step="0.01" value="0.5">
+    <span class="bgm-status">BGM // ACTIVE</span>
+</div>
+
+<audio id="bgm" loop>
+    <source src="bgm.mp3" type="audio/mpeg">
+</audio>
 
 <script>
 function enter(){
@@ -290,6 +369,31 @@ function closeModal(){
     document.getElementById('modal').classList.add('hidden');
     document.body.style.overflow=''
 }
+    // ===== BGM CONTROL =====
+const bgm = document.getElementById("bgm");
+const bgmPlay = document.getElementById("bgmPlay");
+const bgmPause = document.getElementById("bgmPause");
+const bgmStop = document.getElementById("bgmStop");
+const bgmVolume = document.getElementById("bgmVolume");
+
+bgm.volume = 0.5;
+
+bgmPlay.addEventListener("click", () => {
+    bgm.play();
+});
+
+bgmPause.addEventListener("click", () => {
+    bgm.pause();
+});
+
+bgmStop.addEventListener("click", () => {
+    bgm.pause();
+    bgm.currentTime = 0;
+});
+
+bgmVolume.addEventListener("input", () => {
+    bgm.volume = bgmVolume.value;
+});
 </script>
 </body>
 </html>
