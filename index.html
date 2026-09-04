@@ -219,6 +219,9 @@ main{width:min(1180px,92vw);margin:auto}
 </style>
 </head>
 <body>
+<audio id="glitchSfx" preload="auto">
+    <source src="glitch.mp3" type="audio/mpeg">
+</audio>
 
 <section id="landing" class="landing">
 <div class="hero">
@@ -412,6 +415,14 @@ bgmStop.addEventListener("click", () => {
 bgmVolume.addEventListener("input", () => {
     bgm.volume = bgmVolume.value;
 });
+const glitchSfx = document.getElementById("glitchSfx");
+
+function playGlitchSfx() {
+    if (!glitchSfx) return;
+    glitchSfx.currentTime = 0;
+    glitchSfx.volume = 0.55;
+    glitchSfx.play().catch(() => {});
+}
 </script>
 </body>
 </html>
