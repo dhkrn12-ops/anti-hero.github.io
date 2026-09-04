@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ANTI-HERO // HIGHROLLER</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Orbitron:wght@500;600;700;800;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;background:#07090c;color:#edf1f3;font-family:Inter,"Noto Sans KR",sans-serif}
+button{font:inherit;color:inherit}
+.hidden{display:none!important}
+body:after{content:"";position:fixed;inset:0;pointer-events:none;opacity:.045;background:repeating-linear-gradient(0deg,transparent 0 3px,#fff 4px);z-index:100}
+.landing{min-height:100vh;display:grid;place-items:center;text-align:center;position:relative;overflow:hidden;background:radial-gradient(circle at center,#252b31 0,#11151a 34%,#07090c 72%)}
+.landing:before,.landing:after{content:"";position:absolute;border:1px solid #fff1;width:42vw;height:42vw;transform:rotate(45deg)}
+.landing:after{width:26vw;height:26vw}
+.hero{position:relative;z-index:2}
+.eyebrow,.subtitle,.status,.brand,.sectionMeta,.modalKicker,.profileLabel{font-family:Orbitron,sans-serif;letter-spacing:.16em}
+.eyebrow{font-size:11px;color:#929ca3;margin-bottom:22px}
+.title{font:900 clamp(52px,10vw,145px) Orbitron;margin:0;letter-spacing:.04em;color:#eef2f4;position:relative;text-shadow:0 0 3px #fff,2px 0 #ffffff55,-2px 0 #8796a355}
+.title:before,.title:after{content:"ANTI-HERO";position:absolute;inset:0;opacity:.3;pointer-events:none}
+.title:before{transform:translate(-4px,2px);clip-path:inset(22% 0 58%);animation:g 2s infinite}
+.title:after{transform:translate(4px,-2px);clip-path:inset(65% 0 12%);animation:g 1.5s infinite reverse}
+@keyframes g{0%,88%,100%{transform:translate(0)}90%{transform:translate(-7px,1px)}93%{transform:translate(5px,-2px)}}
+.subtitle{font-size:11px;color:#879199;margin:24px 0 40px}
+.access{background:#0b0d10cc;border:1px solid #aab2b8;padding:17px 56px;cursor:pointer;font:800 12px Orbitron;letter-spacing:.3em;transition:.2s}
+.access:hover{background:#eef2f4;color:#080a0d;box-shadow:0 0 30px #fff2}
+.loading{position:fixed;inset:0;background:#07090c;z-index:200;display:grid;place-items:center;text-align:center}
+.loadline{width:min(480px,80vw);height:2px;background:#252b30;margin:25px auto;overflow:hidden}.loadline i{display:block;width:30%;height:100%;background:#e5eaed;animation:l 1s infinite}
+@keyframes l{to{transform:translateX(350%)}}
+.loadtext{font:700 10px Orbitron;letter-spacing:.25em;color:#aab3b9}
+.db{min-height:100vh;background:linear-gradient(135deg,#0a0d11,#171c21 48%,#07090c)}
+.top{height:78px;border-bottom:1px solid #30373d;display:flex;align-items:center;justify-content:space-between;padding:0 5vw;background:#080a0de8;position:sticky;top:0;z-index:20;backdrop-filter:blur(12px)}
+.brand{font-size:15px;font-weight:900}.status{font-size:9px;color:#7f8990}.nav{display:flex;gap:7px}.nav button{background:transparent;border:1px solid #343b41;padding:10px 14px;font:800 9px Orbitron;letter-spacing:.1em;cursor:pointer}.nav button.active,.nav button:hover{background:#e9edef;color:#080a0d}
+main{width:min(1200px,90vw);margin:auto;padding:72px 0}.sectionTitle{font:900 clamp(32px,5vw,54px) Orbitron;margin:0 0 10px}.sectionMeta{font-size:10px;color:#737e86;margin-bottom:42px}
+.grid{display:grid;gap:20px}.world{grid-template-columns:repeat(4,1fr)}.ability{grid-template-columns:1fr 1fr}.members{grid-template-columns:repeat(4,1fr)}
+.card{position:relative;overflow:hidden;border:1px solid #343b41;background:linear-gradient(145deg,#171c21,#0d1013);transition:.2s;cursor:pointer}
+.card:hover{border-color:#aeb6bb;transform:translateY(-3px);box-shadow:0 16px 40px #0007}
+.sq{aspect-ratio:1}.wide{aspect-ratio:16/9}.member{aspect-ratio:3/5}
+.placeholder{height:100%;display:grid;place-items:center;text-align:center;color:#657078;font:800 10px Orbitron;letter-spacing:.15em;background:radial-gradient(circle,#2a3036,#11151a)}.placeholder img{width:100%;height:100%;display:block;object-fit:cover}.imageFallback{display:none;text-align:center;color:#657078;font:800 10px Orbitron;letter-spacing:.15em;line-height:1.7}
+.label{position:absolute;left:12px;top:12px;background:#050709d9;border:1px solid #485158;padding:8px;font:800 9px Orbitron;letter-spacing:.13em}
+.minfo{position:absolute;left:10px;right:10px;bottom:10px;background:#050709e8;border-left:2px solid #dbe1e4;padding:11px}
+.minfo b{display:block;font:900 14px Orbitron}.minfo span{display:block;font:700 9px Orbitron;color:#b2bac0;line-height:1.65;margin-top:5px}
+.ainfo{height:100%;padding:28px}.ainfo h3{font:800 19px Rajdhani,sans-serif;letter-spacing:.08em;margin:0 0 12px}.ainfo p{font-size:15px;line-height:1.8;color:#aab3b9;margin:0}
+.ranks{display:grid;grid-template-columns:repeat(7,1fr);gap:10px;margin-top:18px}.rank{aspect-ratio:16/9;background:#11151a;border:1px solid #3c444a;font:900 19px Orbitron;cursor:pointer;transition:.2s}.rank:hover{background:#e9edef;color:#080a0d}
+.modal{position:fixed;inset:0;background:#000c;backdrop-filter:blur(8px);z-index:150;display:grid;place-items:center;padding:20px}
+.modalbox{width:min(1040px,94vw);max-height:90vh;overflow:auto;background:#101419;border:1px solid #69737a;box-shadow:0 25px 70px #000;padding:30px 34px}
+.close{float:right;background:transparent;border:1px solid #4a5258;padding:7px 10px;cursor:pointer;font:700 9px Orbitron;letter-spacing:.1em}.close:hover{background:#eef2f4;color:#080a0d}
+.modalKicker{font-size:9px;color:#818c94;margin-bottom:9px}.modalbox h2{font:900 26px Orbitron;margin:0 0 24px}.modalText{font-size:15px;line-height:1.9;color:#b9c1c6;white-space:pre-line}
+.profileHead{display:grid;grid-template-columns:minmax(260px,34%) 1fr;gap:34px;margin-bottom:0;align-items:stretch}.profileImage{aspect-ratio:3/5;min-height:520px;border:1px solid #465057;background:radial-gradient(circle,#2a3036,#11151a);display:grid;place-items:center;text-align:center;font:800 10px Orbitron;color:#69747c;position:relative;overflow:hidden}.profileImage img{width:100%;height:100%;display:block;object-fit:cover;position:absolute;inset:0}.profileImage:after{content:"PERSONNEL VISUAL // CLASSIFIED";position:absolute;left:12px;right:12px;bottom:12px;padding:9px;border:1px solid #465057;background:#050709d9;font:700 8px Orbitron;letter-spacing:.12em;color:#9da7ad}.profileHead>div:last-child{min-width:0}
+.profileName{font:900 clamp(25px,4vw,40px) Orbitron;margin:4px 0 8px}.profileRole{font:700 11px Orbitron;color:#8e999f;letter-spacing:.12em}.profileGrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:28px}.profileSection{border:1px solid #343d43;padding:18px;background:#0b0e12}.profileLabel{font-size:9px;color:#7f8a92;margin-bottom:9px}.profileValue{font-size:14px;line-height:1.7;color:#d5dade;white-space:pre-line}
+@media(max-width:800px){.world,.members{grid-template-columns:1fr 1fr}.ability{grid-template-columns:1fr}.ranks{grid-template-columns:repeat(4,1fr)}.top{height:auto;min-height:78px;gap:12px;flex-wrap:wrap}.nav{width:100%;overflow:auto}.nav button{white-space:nowrap}.profileHead{grid-template-columns:180px 1fr;gap:22px}.profileImage{min-height:360px}.profileGrid{grid-template-columns:1fr}}
+@media(max-width:500px){.world,.members{grid-template-columns:1fr}.profileHead{grid-template-columns:1fr}.profileImage{width:150px;min-height:250px}.modalbox{padding:24px 18px}}
+</style>
+</head>
+<body>
+<section id="landing" class="landing"><div class="hero"><div class="eyebrow">HERO ASSOCIATION // RESTRICTED DATABASE</div><h1 class="title">ANTI-HERO</h1><div class="subtitle">THE LINE BETWEEN HERO AND VILLAIN</div><button class="access" onclick="enter()">ACCESS</button></div></section>
+
+<section id="loading" class="loading hidden"><div><div class="loadtext" id="lt">AUTHENTICATING // DATABASE ACCESS</div><div class="loadline"><i></i></div><div class="loadtext">SECURE CONNECTION</div></div></section>
+
+<section id="db" class="db hidden">
+<header class="top"><div class="brand">HIGHROLLER // DATABASE</div><div class="status">SECURE CONNECTION · ONLINE</div><nav class="nav"><button class="active" onclick="page('world',this)">WORLD</button><button onclick="page('ability',this)">ABILITY</button><button onclick="page('members',this)">HIGHROLLER</button></nav></header>
+<main>
+<section id="world" class="view">
+<h2 class="sectionTitle">WORLD</h2><div class="sectionMeta">WORLD DATABASE // CLASSIFIED</div>
+<div class="grid world">
+<div class="card sq" onclick="modalText('🌐세계관','WORLD DATABASE','어느 날, 전 세계 곳곳에서 인간의 상식을 벗어난 힘을 가진 사람들이 나타나기 시작했다. 사람들은 그 힘을 ‘이능력’이라 불렀고, 사회는 빠르게 변화했다.\n\n이능력자의 범죄가 증가하자 정부와 민간 조직은 이들을 관리하기 위한 체계를 구축했고, 강력한 이능력으로 사람들을 구하는 이들은 ‘히어로’, 그 힘을 범죄와 사적인 목적에 사용하는 이들은 ‘빌런’이라 불리게 되었다.\n\n현재의 도시는 히어로와 빌런이 공존하는 새로운 시대에 들어섰다. 그리고 그 중심에는 수많은 사건과 이해관계가 얽힌 거대한 도시, 리버티시티가 있다.')"><div class="placeholder"><img src="WORLD.png" alt="WORLD" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><span class="imageFallback">WORLD IMAGE<br>1:1</span></div><span class="label">WORLD</span></div>
+<div class="card sq" onclick="modalText('🏙️리버티시티','CITY DATABASE','거대한 초현대식 도시. 이능력 발현 이후 급격하게 성장한 도시 중 하나로, 수많은 히어로와 빌런이 활동하는 세계적인 사건의 중심지다.\n\n고층 빌딩이 밀집한 중심가부터 빈민가와 산업지대, 거대한 항구와 각종 연구시설까지 서로 다른 모습의 지역들이 공존한다. 화려한 도시의 이면에는 이능력 범죄와 암시장, 각종 음지의 조직들이 자리하고 있다.\n\n리버티시티의 치안과 이능력자 관리는 히어로 협회가 담당하고 있으며, 이곳에서 발생하는 대형 사건에는 언제나 히어로와 빌런이 뒤엉켜 있다.')"><div class="placeholder"><img src="LIBERTY_CITY.png" alt="LIBERTY CITY" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><span class="imageFallback">LIBERTY CITY<br>IMAGE 1:1</span></div><span class="label">LIBERTY CITY</span></div>
+<div class="card sq" onclick="modalText('🦸히어로','HERO DATABASE','이능력을 활용해 시민을 보호하고 범죄를 저지하는 이능력자들. 히어로 협회에 등록된 정식 히어로부터 독자적으로 활동하는 프리랜서까지 다양한 형태가 존재한다.\n\n강력한 이능력과 뛰어난 실적을 가진 히어로는 높은 등급을 부여받으며, 대중에게는 영웅으로 추앙받는다. 그러나 모든 히어로가 정의로운 것은 아니다.\n\n권력과 명예, 개인적인 욕망에 취해 타락하는 히어로 역시 존재하며, 이들은 때때로 빌런보다 위험한 존재가 된다.')"><div class="placeholder"><img src="HERO.png" alt="HERO" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><span class="imageFallback">HERO<br>IMAGE 1:1</span></div><span class="label">HERO</span></div>
+<div class="card sq" onclick="modalText('☠️빌런','VILLAIN DATABASE','이능력을 이용해 범죄를 저지르거나 사회의 질서를 위협하는 이능력자들. 단순한 범죄자부터 거대한 조직을 이끄는 초월적인 강자까지 그 유형과 목적은 제각각이다.\n\n일부는 돈과 권력을 위해 움직이고, 일부는 사회에 대한 증오로 싸우며, 아무런 목적 없이 자신의 힘을 휘두르는 자도 존재한다.\n\n히어로 협회는 위험도가 높은 빌런을 지속적으로 추적하고 있으며, 특히 타락한 히어로는 일반적인 빌런보다 더욱 위험한 존재로 분류한다.')"><div class="placeholder"><img src="VILLAIN.png" alt="VILLAIN" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><span class="imageFallback">VILLAIN<br>IMAGE 1:1</span></div><span class="label">VILLAIN</span></div>
+</div></section>
+
+<section id="ability" class="view hidden">
+<h2 class="sectionTitle">ABILITY</h2><div class="sectionMeta">ABILITY DATABASE // CLASSIFICATION SYSTEM</div>
+<div class="grid ability">
+<div class="card wide" onclick="modalText('⚡이능력','ABILITY SYSTEM','이능력은 인간에게 발현된 초상적인 힘을 통칭한다. 어느 날 갑작스럽게 나타난 이능력은 사람마다 형태와 원리가 다르며, 신체 강화부터 물질 조작, 정신 간섭, 현실에 영향을 미치는 현상까지 그 범위가 매우 넓다.\n\n이능력의 강함은 단순한 파괴력만으로 결정되지 않는다. 능력의 범위, 활용도, 지속력, 성장 가능성 등을 종합적으로 평가하여 등급을 부여한다.\n\n같은 이능력이라도 사용자의 숙련도에 따라 전투력은 크게 달라질 수 있으며, 강력한 이능력자는 사회의 판도를 뒤흔들 정도의 위험성을 가진다.')"><div class="ainfo"><h3>⚡이능력</h3><p>초상적인 힘의 발현과 능력 분류 체계.</p></div></div>
+<div class="card wide" onclick="modalText('🔥오버클럭','ABILITY SYSTEM','오버클럭은 이능력자가 자신의 한계를 강제로 뛰어넘어 능력을 과부하시키는 현상이다.\n\n순간적으로 이능력의 출력과 범위, 신체 능력을 크게 끌어올릴 수 있지만 그만큼 사용자에게 막대한 부담이 발생한다. 능력에 따라 신체 손상, 감각 이상, 의식 저하 등의 부작용이 나타날 수 있으며 장시간 유지하는 것은 사실상 불가능하다.\n\n숙련된 이능력자는 오버클럭을 전투의 결정적인 순간에 활용하며, 일부 최상위 능력자는 자신의 한계를 어디까지 넘어설 수 있는지조차 명확하게 알려져 있지 않다.')"><div class="ainfo"><h3>🔥오버클럭</h3><p>한계 이상의 출력을 강제로 끌어내는 과부하 현상.</p></div></div>
+</div>
+<div class="sectionMeta" style="margin-top:42px;margin-bottom:8px">ABILITY RANK</div>
+<div class="ranks">
+<button class="rank" onclick="modalText('CLASS E','ABILITY RANK','일상적인 상황에서 제한적으로 활용할 수 있는 수준. 전투 능력으로서는 낮은 편이며 위험도 역시 낮다.')">E</button>
+<button class="rank" onclick="modalText('CLASS D','ABILITY RANK','명확한 전투 또는 특수 활용이 가능한 수준. 일반인을 상대로 우위를 점할 수 있지만 한계가 뚜렷하다.')">D</button>
+<button class="rank" onclick="modalText('CLASS C','ABILITY RANK','본격적인 전투 능력자로 분류되는 단계. 숙련도에 따라 여러 명의 일반인을 상대할 수 있다.')">C</button>
+<button class="rank" onclick="modalText('CLASS B','ABILITY RANK','상당한 전투력을 가진 이능력자. 단독으로 위험한 사건에 대응할 수 있으며 지역 단위의 위협으로 평가된다.')">B</button>
+<button class="rank" onclick="modalText('CLASS A','ABILITY RANK','극히 강력한 이능력자에게 부여되는 등급. 단독으로 도시의 주요 전력을 상대할 수 있는 수준이다.')">A</button>
+<button class="rank" onclick="modalText('CLASS S','ABILITY RANK','국가적 위협에 대응할 수 있는 최상위 이능력자. 한 명의 S급이 전장의 흐름 자체를 바꿀 수 있다.')">S</button>
+<button class="rank" onclick="modalText('CLASS SS','ABILITY RANK','현재의 이능력 분류 체계로 완전히 측정할 수 없는 초월적 존재. 능력의 한계와 위험도를 명확히 규정하기 어려운 영역이다.')">SS</button>
+</div></section>
+
+<section id="members" class="view hidden">
+<h2 class="sectionTitle">HIGHROLLER</h2><div class="sectionMeta">SPECIAL RESPONSE UNIT // ACTIVE PERSONNEL</div>
+<div class="grid members">
+<div class="card member" onclick="profile('KING','서유진','CLASS: S','인과조작','하이롤러의 KING. 압도적인 능력과 판단력으로 팀의 전반적인 작전을 지휘하며, 어떤 상황에서도 승산을 만들어내는 S급 이능력자.','본명: 서유진\n\n나이: 24세\n\n생일: 8월 13일','인과조작\n\n자신과 주변에서 발생하는 사건의 원인과 결과에 개입하는 능력. 단순한 현상 조작을 넘어 전투의 흐름 자체를 뒤집을 수 있으며, 상황을 유리한 방향으로 유도하는 데 특화되어 있다.','#냉미녀 #도도 #히트맨')"><div class="placeholder"><img src="KING.png" alt="KING"></div><div class="minfo"><b>KING / 서유진</b><span>CLASS: S<br>이능력: 인과조작</span></div></div>
+<div class="card member" onclick="profile('QUEEN','이하늘','CLASS: S','시스템 재밍','하이롤러의 QUEEN. 도시의 수많은 시스템을 자신의 무대로 삼아 정보를 장악하고, 팀의 움직임을 보이지 않는 곳에서 지원하는 S급 이능력자.','본명: 이하늘\n\n나이: 21세\n\n생일: 1월 26일','시스템 재밍\n\n전자기기와 정보 시스템에 간섭하여 정상적인 작동을 방해하는 능력. 보안 시스템, 통신망, 감시 장비 등 현대 도시의 다양한 시스템을 무력화하여 자신의 마음대로 다룰수 있다.','#츤데레 #오타쿠 #해커')"><div class="placeholder"><img src="QUEEN.png" alt="QUEEN"></div><div class="minfo"><b>QUEEN / 이하늘</b><span>CLASS: S<br>이능력: 시스템 재밍</span></div></div>
+<div class="card member" onclick="profile('JACK','한채아','CLASS: S','신체강화','하이롤러의 JACK. 가장 직관적이고 강력한 방식으로 적을 제압하는 근접전의 전문가. S급 이능력자다운 압도적인 신체 능력으로 전장의 선봉을 담당한다.','본명: 한채아\n\n나이: 25세\n\n생일: 5월 5일','신체강화\n\n자신의 신체 능력을 극한까지 끌어올리는 능력. 근력과 민첩성, 반사신경, 내구력 등 신체 전반을 강화하며 압도적인 근접전 능력을 발휘한다.','#활발함 #뇌청초 #돌격대')"><div class="placeholder"><img src="JACK.png" alt="JACK"></div><div class="minfo"><b>JACK / 한채아</b><span>CLASS: S<br>이능력: 신체강화</span></div></div>
+<div class="card member" onclick="profile('ACE','정도희','CLASS: S','빙설어검','하이롤러의 ACE. 차가운 검격과 압도적인 제압력을 지닌 S급 이능력자. 우아하고 유려한 전투 방식으로 적들을 매료시켜 암살한다.','본명: 정도희\n\n나이: 22세\n\n생일: 11월 7일','빙설어검\n\n냉기를 머금은 검을 자유롭게 다루는 능력. 검격과 동시에 발생하는 극한의 냉기가 주변을 얼려버리며, 생성된 검과 얼음을 이용한 정밀한 전투가 가능하다.','#우아한 #아가씨 #암살자')"><div class="placeholder"><img src="ACE.png" alt="ACE"></div><div class="minfo"><b>ACE / 정도희</b><span>CLASS: S<br>이능력: 빙설어검</span></div></div>
+</div></section>
+</main></section>
+
+<div id="modal" class="modal hidden"><div class="modalbox"><button class="close" onclick="closeModal()">CLOSE</button><div class="modalKicker" id="mk"></div><h2 id="mt"></h2><div class="modalText" id="mx"></div></div></div>
+
+<script>
+function enter(){let l=document.getElementById('loading'),s=document.getElementById('landing'),d=document.getElementById('db'),t=document.getElementById('lt');l.classList.remove('hidden');let a=['AUTHENTICATING // DATABASE ACCESS','VERIFYING IDENTITY...','ENCRYPTED CHANNEL OPEN...','DATABASE ONLINE'];let i=0,x=setInterval(()=>t.textContent=a[++i%a.length],220);setTimeout(()=>{clearInterval(x);l.classList.add('hidden');s.classList.add('hidden');d.classList.remove('hidden')},1100)}
+function page(id,b){document.querySelectorAll('.view').forEach(x=>x.classList.add('hidden'));document.getElementById(id).classList.remove('hidden');document.querySelectorAll('.nav button').forEach(x=>x.classList.remove('active'));b.classList.add('active');scrollTo(0,0)}
+function modalText(t,k,x){document.getElementById('mk').textContent=k;document.getElementById('mt').textContent=t;document.getElementById('mx').textContent=x;document.getElementById('modal').classList.remove('hidden')}
+function profile(code,name,className,ability,summary,personal,skill,traits){
+const profileImage=document.getElementById('profileImage');
+const profileImagePlaceholder=document.getElementById('profileImagePlaceholder');
+if(profileImage&&profileImagePlaceholder){
+    const imageMap={KING:'KING.png',QUEEN:'QUEEN.png',JACK:'JACK.png',ACE:'ACE.png'};
+    const image=imageMap[code];
+    if(image){
+        profileImage.src=image;
+        profileImage.alt=code;
+        profileImage.style.display='block';
+        profileImagePlaceholder.style.display='none';
+    }else{
+        profileImage.style.display='none';
+        profileImagePlaceholder.style.display='block';
+    }
+}
+document.getElementById('mk').textContent='HIGHROLLER // PERSONNEL FILE';
+document.getElementById('mt').innerHTML='<div class="profileHead"><div class="profileImage"><img src="'+code+'.png" alt="'+code+'" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'block\'"><span class="imageFallback">'+code+'<br>IMAGE 3:5</span></div><div><div class="profileName">'+code+' / '+name+'</div><div class="profileRole">'+className+' · '+ability+'</div><div class="profileGrid"><div class="profileSection"><div class="profileLabel">PERSONAL INFORMATION</div><div class="profileValue">'+personal+'</div></div><div class="profileSection"><div class="profileLabel">ABILITY</div><div class="profileValue">'+skill+'</div></div><div class="profileSection"><div class="profileLabel">TRAITS</div><div class="profileValue">'+traits+'</div></div><div class="profileSection"><div class="profileLabel">SUMMARY</div><div class="profileValue">'+summary+'</div></div></div></div></div>';
+document.getElementById('mx').textContent='';document.getElementById('modal').classList.remove('hidden')
+}
+function closeModal(){document.getElementById('modal').classList.add('hidden')}
+</script>
+</body></html>
