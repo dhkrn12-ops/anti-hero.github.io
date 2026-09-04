@@ -73,7 +73,6 @@ main{width:min(1180px,92vw);margin:auto}
 .rank{aspect-ratio:16/9;background:#11151a;border:1px solid #3c444a;font:900 19px Orbitron;cursor:pointer;transition:.2s}
 .rank:hover{background:#e9edef;color:#080a0d}
 
-/* DETAIL MODAL */
 .modal{position:fixed;inset:0;background:#000c;backdrop-filter:blur(8px);z-index:150;display:grid;place-items:center;padding:20px;overflow:hidden}
 .modalbox{width:min(1040px,94vw);max-width:100%;max-height:90vh;max-height:90dvh;overflow-y:auto;overflow-x:hidden;background:#101419;border:1px solid #69737a;box-shadow:0 25px 70px #000;padding:30px 34px}
 .close{float:right;background:transparent;border:1px solid #4a5258;padding:7px 10px;cursor:pointer;font:700 9px Orbitron;letter-spacing:.1em}
@@ -323,7 +322,6 @@ main{width:min(1180px,92vw);margin:auto}
 <div class="modalText" id="mx"></div>
 </div>
 </div>
-    <!-- BGM CONTROL -->
 <div class="bgm-control">
     <button id="bgmPlay">▶</button>
     <button id="bgmPause">Ⅱ</button>
@@ -369,7 +367,6 @@ function closeModal(){
     document.getElementById('modal').classList.add('hidden');
     document.body.style.overflow=''
 }
-    // ===== BGM CONTROL =====
 const bgm = document.getElementById("bgm");
 const bgmPlay = document.getElementById("bgmPlay");
 const bgmPause = document.getElementById("bgmPause");
