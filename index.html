@@ -272,6 +272,23 @@ function revealDatabase() {
         db.classList.remove('glitch-reveal');
     }, 650);
 }
+function enter() {
+    const landing = document.getElementById('landing');
+    const loading = document.getElementById('loading');
+    const db = document.getElementById('db');
+
+    loading.classList.remove('hidden');
+
+    setTimeout(() => {
+        loading.classList.add('hidden');
+        landing.classList.add('hidden');
+
+        db.classList.remove('hidden');
+        db.classList.add('glitch-reveal');
+
+        playGlitchSfx();
+    }, 1100);
+}
 </style>
 </head>
 <body>
@@ -284,7 +301,7 @@ function revealDatabase() {
 <div class="eyebrow">HERO ASSOCIATION // RESTRICTED DATABASE</div>
 <h1 class="title">ANTI-HERO</h1>
 <div class="subtitle">THE LINE BETWEEN HERO AND VILLAIN</div>
-<button class="access" onclick="playGlitchSfx(); enter(); revealDatabase()">ACCESS</button>
+<button class="access" onclick="enter()">ACCESS</button>
 </div>
 </section>
 
